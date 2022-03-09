@@ -41,4 +41,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    // get urgent count
+    public function urgent()
+    {
+        return $this->hasMany('App\Models\Note', 'created_by', 'id')->where('type_id', 1);
+    }
+    // get normal count
+    public function normal()
+    {
+        return $this->hasMany('App\Models\Note', 'created_by', 'id')->where('type_id', 2);
+    }
+
+    // get on date count
+    public function onDate()
+    {
+        return $this->hasMany('App\Models\Note', 'created_by', 'id')->where('type_id', 3);
+    }
 }
