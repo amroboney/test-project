@@ -19,6 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-
-Route::apiResource('notes', 'Api\NoteController');
+// login
+Route::post('login', 'Api\Auth\LoginController@login');
+Route::post('register', 'Api\Auth\RegisterController@register');
+Route::apiResource('notes', 'Api\NoteController')->middleware('auth:sanctum');
 Route::get('types', 'Api\TypeController@getTypes');
